@@ -7,7 +7,6 @@
 
       <!-- Calculation details. This tab is getting re-initialized each time we open it's tab -->
       <ng-container *ngSwitchCase="tabTypes.CalculationDetails">
-        <p>{{index === tabsState.selectedIndex}}</p>
           <app-calculations *ngIf="index === tabsState.selectedIndex"></app-calculations>
       </ng-container>
 
