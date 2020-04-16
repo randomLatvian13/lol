@@ -1,17 +1,17 @@
-<app-tabs></app-tabs>
+<!-- todo later <app-tabs></app-tabs> -->
 <!-- Render application tabs -->
 <mat-tab-group [selectedIndex]="tabsState.selectedIndex" (selectedIndexChange)="onChangeTab($event)">
 
-  <mat-tab *ngFor="let tab of tabsState.tabs; let index = index" [label]="tab.label">
+  <mat-tab *ngFor="let tab of tabsState.tabs; let index = index; trackBy: trackByFn" [label]="tab.label">
     <ng-container [ngSwitch]="tab.label">
 
       <!-- Calculation details. This tab is getting re-initialized each time we open it's tab -->
-      <ng-container *ngSwitchCase="tabTypes.CalculationDetails">
+      <ng-container *ngSwitchCase="TabTypes.CalculationDetails">
           <app-calculations *ngIf="index === tabsState.selectedIndex"></app-calculations>
       </ng-container>
 
       <!-- New Calculation. Tab is persistend. Doesn't get destroyed -->
-      <ng-container *ngSwitchCase="tabTypes.NewCalculation">
+      <ng-container *ngSwitchCase="TabTypes.NewCalculation">
         <app-new-calculation-form></app-new-calculation-form>
       </ng-container>
 
@@ -19,4 +19,6 @@
   </mat-tab>
 
 </mat-tab-group>
+
 <hr>
+<button class="addCalculation" (click)="addNewCalculation()">Create New Calculation</button>
