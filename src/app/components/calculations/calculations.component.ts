@@ -31,6 +31,7 @@ export class CalculationsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    console.log('Calculations:: on init');
     this.gridOptions = {
       onSelectionChanged: (event: SelectionChangedEvent) => {
         console.log('selection change', event);
@@ -41,6 +42,12 @@ export class CalculationsComponent implements OnInit {
         event.api.sizeColumnsToFit();
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log('Calculations:: on destroy');
   }
 
 }

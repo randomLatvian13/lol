@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { CalculationsComponent } from './components/calculations/calculations.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AgGridModule.withComponents([]),
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatTabsModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
