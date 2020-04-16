@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridOptions, SelectionChangedEvent, GridReadyEvent } from 'ag-grid-community';
+import { log } from 'src/helpers';
 
 @Component({
   selector: 'app-calculations',
@@ -31,10 +32,10 @@ export class CalculationsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    console.log('Calculations:: on init');
+    log('Calculations:: on init');
     this.gridOptions = {
       onSelectionChanged: (event: SelectionChangedEvent) => {
-        console.log('selection change', event);
+        log('selection change', event);
         const selectedRowId = this.agGrid.api.getSelectedNodes()[0];
         this.selectedRowId = selectedRowId === undefined ? '-1' : selectedRowId.id;
       },
@@ -47,7 +48,7 @@ export class CalculationsComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log('Calculations:: on destroy');
+    log('Calculations:: on destroy');
   }
 
 }

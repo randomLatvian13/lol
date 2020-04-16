@@ -11,13 +11,18 @@ import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { NewCalculationFormComponent } from './components/new-calculation-form/new-calculation-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculationsComponent,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    NewCalculationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,14 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     MatSliderModule,
     MatTabsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot(reducers, {
+      metaReducers, 
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   bootstrap: [AppComponent]
